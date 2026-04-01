@@ -8,7 +8,7 @@ public class MyGraph {
     int numVertices;
     ArrayList<Link>[] cityRoads;
     int[] parent;
-    int[] height;
+    int[] rank;
 
     /**
      * Create an empty graph with n vertices and no edges
@@ -151,13 +151,13 @@ public class MyGraph {
         int rootI = findSet(i);
         int rootJ = findSet(j);
 
-        if (height[rootI] < height[rootJ]) {
+        if (rank[rootI] < rank[rootJ]) {
             parent[rootI] = rootJ;
-        } else if (height[rootI] > height[rootJ]) {
+        } else if (rank[rootI] > rank[rootJ]) {
             parent[rootJ] = rootI;
-        } else {
+        } else { // same rank
             parent[rootJ] = rootI;
-            height[rootI]++;
+            rank[rootI]++;
         }
     }
 }
