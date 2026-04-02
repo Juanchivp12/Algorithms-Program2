@@ -18,7 +18,7 @@ public class MyGraph {
         numVertices = n;
         cityRoads = new ArrayList[n + 1];
 
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= numVertices; i++) {
             cityRoads[i] = new ArrayList<Link>();
         }
     }
@@ -108,7 +108,7 @@ public class MyGraph {
         System.out.println(numVertices);
         for (Link l : MST) {
             System.out.print(l.v1 < l.v2() ? l.v1 : l.v2);
-            System.out.println(l.w());
+            System.out.println(" " + l.w());
         }
     }
 
