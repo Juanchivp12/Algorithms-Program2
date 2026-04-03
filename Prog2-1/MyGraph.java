@@ -68,7 +68,7 @@ public class MyGraph {
      */
     public ArrayList<Link> MST() {
         ArrayList<Link> res = new ArrayList<Link>();
-        height = new int[numVertices + 1];
+        rank = new int[numVertices + 1];
         parent = new int[numVertices + 1];
 
         // Make an arrayList with all the roads with no repetitions, e.g. contains (1, 3) but not (3, 1)
@@ -101,14 +101,17 @@ public class MyGraph {
         return res;
     }
 
-
-
+    /**
+     * Outputs the graph in specific format
+     */
     public void output() {
-        ArrayList<Link> MST = MST();
         System.out.println(numVertices);
-        for (Link l : MST) {
-            System.out.print(l.v1 < l.v2() ? l.v1 : l.v2);
-            System.out.println(" " + l.w());
+        for (int i = 1; i <= numVertices; i++) {
+            for (Link l : cityRoads[i]) {
+                if (l.v1() < l.v2()) {
+                    System.out.println(l.v1() + " " + l.v2() + " " + l.w());
+                }
+            }
         }
     }
 
