@@ -8,7 +8,7 @@ public class Prog2 {
      * @param roads list of links such that each entry contains Link representing a possible road between two cities and the cost of building a road between them
      * @param q Number of city pairs to be considered
      * @param test List of all city pairs. Each entry stores a pair of cities
-     * @return true if the road appears
+     * @return array of booleans
      */
     public static boolean[] Prog2(int n, ArrayList<Link> roads, int q, ArrayList<Link> test) {
         boolean[] res = new boolean[q];
@@ -16,8 +16,8 @@ public class Prog2 {
             res[i] = false;
 
         MyGraph graph = new MyGraph(n);
-        for (Link l : roads) {
-            graph.addEdge(l.v1(), l.v2(), l.w());
+        for (Link road : roads) {
+            graph.addEdge(road.v1, road.v2(), road.w());
         }
 
         ArrayList<Link> mst = graph.MST();
@@ -43,12 +43,12 @@ public class Prog2 {
      * Helper method to determine if provided list of edges contains a specific edge
      * @param list of edges to search through
      * @param query edge to search for
-     * @return true if edge is found, false otherwise
+     * @return edge of type Link
      */
     private static Link findEdge(ArrayList<Link> list, Link query) {
-        for (Link l : list) {
-            if ((l.v1() == query.v1() && l.v2() == query.v2()) || (l.v1() == query.v2() && l.v2() == query.v1())) {
-                return l;
+        for (Link edge : list) {
+            if ((edge.v1() == query.v1() && edge.v2() == query.v2()) || (edge.v1() == query.v2() && edge.v2() == query.v1())) {
+                return edge;
             }
         }
         return null;
@@ -66,18 +66,18 @@ public class Prog2 {
         if (current == end) return 0;
 
         visited[current] = true;
-        for (Link l : mst) {
+        for (Link edge : mst) {
             int neighbor = -1; // Not visited yet
-            if (l.v1() == current && !visited[l.v2()]) {
-                neighbor = l.v2();
-            } else if (l.v2() == current && !visited[l.v1()]) {
-                neighbor = l.v1();
+            if (edge.v1() == current && !visited[edge.v2()]) {
+                neighbor = edge.v2();
+            } else if (edge.v2() == current && !visited[edge.v1()]) {
+                neighbor = edge.v1();
             }
 
             if (neighbor != -1) {
                 float result = dfs(neighbor, end, mst, visited);
                 if (result >= 0) {
-                    if (l.w() > result) return l.w();
+                    if (edge.w() > result) return edge.w();
                     else return result;
                 }
             }

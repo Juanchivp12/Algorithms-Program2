@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
-import java.util.Collections;
 
 public class Prog2Test {
     

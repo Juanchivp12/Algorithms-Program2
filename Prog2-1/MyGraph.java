@@ -34,8 +34,8 @@ public class MyGraph {
         for (int i = 1; i <= numVertices; i++) {
             cityRoads[i] = new ArrayList<Link>();
 
-            for (Link l : g.cityRoads[i]) {
-                cityRoads[i].add(new Link(l.v1(), l.v2(), l.w()));
+            for (Link road : g.cityRoads[i]) {
+                cityRoads[i].add(new Link(road.v1(), road.v2(), road.w()));
             }
         }
     }
@@ -52,8 +52,8 @@ public class MyGraph {
         if (a < 1 || a > numVertices || b < 1 || b > numVertices) return false;
 
         // Check if road already exists
-        for (Link l : cityRoads[a]) {
-            if (l.v2() == b) return false;
+        for (Link road : cityRoads[a]) {
+            if (road.v2() == b) return false;
         }
 
         cityRoads[a].add(new Link(a, b, w));
@@ -74,9 +74,9 @@ public class MyGraph {
         // Make an arrayList with all the roads with no repetitions, e.g. contains (1, 3) but not (3, 1)
         ArrayList<Link> allRoads = new ArrayList<>();
         for (int i = 1; i <= numVertices; i++) {
-            for (Link l : cityRoads[i]) {
-                if (i < l.v2()) {
-                    allRoads.add(l);
+            for (Link road : cityRoads[i]) {
+                if (i < road.v2()) {
+                    allRoads.add(road);
                 }
             }
         }
@@ -89,10 +89,10 @@ public class MyGraph {
         }
 
         // Build the MST
-        for (Link l : allRoads) {
-            if (!sameSet(l.v1(), l.v2())) {
-                res.add(l);
-                union(l.v1(), l.v2());
+        for (Link road : allRoads) {
+            if (!sameSet(road.v1(), road.v2())) {
+                res.add(road);
+                union(road.v1(), road.v2());
             }
 
             // MST complete
@@ -107,9 +107,9 @@ public class MyGraph {
     public void output() {
         System.out.println(numVertices);
         for (int i = 1; i <= numVertices; i++) {
-            for (Link l : cityRoads[i]) {
-                if (l.v1() < l.v2()) {
-                    System.out.println(l.v1() + " " + l.v2() + " " + l.w());
+            for (Link road : cityRoads[i]) {
+                if (road.v1() < road.v2()) {
+                    System.out.println(road.v1() + " " + road.v2() + " " + road.w());
                 }
             }
         }
@@ -126,11 +126,11 @@ public class MyGraph {
             root = parent[root];
         }
 
-        int j = parent[i];
-        while (j != root) {
+        int next = parent[i];
+        while (next != root) {
             parent[i] = root;
-            i = j;
-            j = parent[i];
+            i = next;
+            next = parent[i];
         }
         return root;
     }
