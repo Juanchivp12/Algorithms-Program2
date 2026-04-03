@@ -77,8 +77,7 @@ public class Prog2 {
             if (neighbor != -1) {
                 float result = dfs(neighbor, end, mst, visited);
                 if (result >= 0) {
-                    if (edge.w() > result) return edge.w();
-                    else return result;
+                    return Math.max(edge.w(), result);
                 }
             }
         }
