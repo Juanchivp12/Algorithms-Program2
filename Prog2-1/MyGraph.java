@@ -66,7 +66,7 @@ public class MyGraph {
      * Return MST of a graph
      * @return MST of a graph
      */
-    public ArrayList<Link>  MST() {
+    public ArrayList<Link> MST() {
         ArrayList<Link> res = new ArrayList<Link>();
         height = new int[numVertices + 1];
         parent = new int[numVertices + 1];
