@@ -33,7 +33,7 @@ public class Prog2 {
                 Link road = findEdge(roads, query);
                 final double THRESHOLD = 0.0001;
                 float maxW = dfs(query.v1(), query.v2(), mst, visited);
-                res[i] = Math.abs(maxW - road.w()) < THRESHOLD; // Right way to compare floats to avoid precision error
+                res[i] = Math.abs(maxW - road.w()) < THRESHOLD; // Found this method for comparing floats to avoid precision errors
             }
         }
         return res;

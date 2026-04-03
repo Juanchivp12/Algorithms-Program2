@@ -19,7 +19,7 @@ public class MyGraph {
         cityRoads = new ArrayList[n + 1];
 
         for (int i = 1; i <= numVertices; i++) {
-            cityRoads[i] = new ArrayList<Link>();
+            cityRoads[i] = new ArrayList<>();
         }
     }
 
